@@ -1,0 +1,12 @@
+
+datasets/
+meshes/
+tools/
+
+
+__pycache__/
+*.pyc
+.vscode
+
+checkpoints/
+ulip_models_data/
