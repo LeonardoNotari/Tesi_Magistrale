@@ -1,14 +1,3 @@
-Nella repository sono presenti i seguenti script python:
-- 'decoder.py': il modello per decodificare le rappresentazioni di ULIP2 in point cloud.
-- 'train.py': Il codice per il training che utilizza la Chamfer Loss e il subsampling per ridurre la dimensione nella gpu.
-- 'dataloader.py': script per caricare il dataset
-- 'pc_trasformation.py': a partire da una point-cloud e da una coppia di testi che indicano un polo positivo e negativo di una determinata caratteristica, calcola l'embedding della point cloud con un modello ULIP2 e la direzione data dai due testi nello spazio latente (se sono entrambi presenti non carica il checkpoint di ULIP2 che è un'operazione che richiede alcuni minuti), sposta quindi l'embedding linearmente secondo un valore 'ALPHA' lungo la direzione e lo normalizza di nuovo nell'ipersfera. Se è stato scelto un valore di 'ADAPT_STEPS'>0 viene eseguito un addestramento del checkpoint del decoder sull'istanza da modificare, infine genera la point cloud corrispondente al nuovo punto dello spazio latente (salva il risultato con il nome il valore di 'ALPHA', i due testi e il numero di 'ADAPT_STEP' nella cartella dove è stata trovata la point cloud originale)
-
-Nelle tre cartelle 'trasform_input_face', 'trasform_input_donkey' e 'trasform_input_spot' sono presenti alcuni
-esempi di esecuzione del codice del file 'pc_trasformation.py' a partire da diverse point cloud di partenza per valori diversi di 'ADAPT-STEP' e 'ALPHA'.
-
-Sì, è comprensibile e abbastanza chiaro. Ti suggerisco però una versione leggermente rivista per corregere piccoli dettagli grammaticali, uniformare lo stile e renderlo più leggibile in un README tecnico.
-
 ---
 
 # README
