@@ -19,22 +19,30 @@ ULIP_CHECKPOINT    = "ulip_models_data/pretrained_models/ULIP-2-PointBERT-10k-xy
 EMB_DIM = 1280    
 N_POINTS = 10000   
 
-ALPHA = [-0.7, 0.7]
-ADAPT_STEPS = 300
+ALPHA = [-0.5, -0.25, 0.25, 0.5]
+ADAPT_STEPS = 500
 LR = 1e-5
 
 PREFIX_TEXT = "a picture of "
-PAIR = ("short",    "tall")
+PREFIX_TEXT = "an animal that is "
+PAIR = ("skeletal",    "muscular")
 
-DECODER_CHECKPOINT = "checkpoints/decoder_animal_5000_align.pth"  
-#DECODER_CHECKPOINT = "checkpoints/decoder_coma.pth"  
+PAIR = ("chubby", "skinny")
+PAIR = ("tall", "short")
+PAIR = ("long-legged", "short-legged")
+PAIR = ("long-necked", "short-necked")
+
+
+DECODER_CHECKPOINT = "checkpoints/decoder_objxl_animal.pth"  
+#DECODER_CHECKPOINT = "checkpoints/decoder_animal_5000_align.pth"  
 DIR = "trasform_input_donkey/"
 
 ORIG_EMB = DIR + "original_embedding.npy" 
 ORIG_PC  = DIR + "original_pointcloud.npy" 
 GENERATED_PC = DIR + "generated_pointcloud" + '_' + str(ADAPT_STEPS) + ".npy"   
 #TRASLATED_EMB = DIR + "traslated_embedding.npy" 
-TRASLATED_PC  = PAIR[0] + '_' + PAIR[1] + '_' + str(ADAPT_STEPS) + ".npy"  
+
+TRASLATED_PC  =  ((DECODER_CHECKPOINT.split('/')[1]).split('.')[0]).split('_')[1] + '_' + PAIR[0] + '_' + PAIR[1] + '_' + str(ADAPT_STEPS) + ".npy"  
 
 
 
@@ -103,8 +111,8 @@ def move_emb(model, tokenizer, text_pos, text_neg):
     print(f"\n{'='*60}")
     print(f"Analisi direzione:  [{text_pos}]  →  [{text_neg}]")
 
-    if os.path.exists('directions_txt.pkl'):
-        with open('directions_txt.pkl', "rb") as f:
+    if os.path.exists('directions.pkl'):
+        with open('directions.pkl', "rb") as f:
             directions = pickle.load(f)
     else:
         directions = []
@@ -118,7 +126,7 @@ def move_emb(model, tokenizer, text_pos, text_neg):
         direction, t_pos, t_neg = text_to_direction(model, tokenizer, text_pos, text_neg)
         sim_tt = float(np.dot(t_pos, t_neg))
         directions.append([ (PREFIX_TEXT + PAIR[0],PREFIX_TEXT + PAIR[1]) , direction, sim_tt])
-        with open('directions_txt.pkl', "wb") as f:
+        with open('directions.pkl', "wb") as f:
             pickle.dump(directions, f)
     else:
         for i in directions:
@@ -154,8 +162,8 @@ def move_emb(model, tokenizer, text_pos, text_neg):
 
 
 def main():
-    if os.path.exists('directions_txt.pkl'):
-        with open('directions_txt.pkl', "rb") as f:
+    if os.path.exists('directions.pkl'):
+        with open('directions.pkl', "rb") as f:
             directions = pickle.load(f)
     else:
         directions = [[]]

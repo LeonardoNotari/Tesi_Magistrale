@@ -10,3 +10,5 @@ __pycache__/
 
 checkpoints/
 ulip_models_data/
+
+trasform_input_donkey/
