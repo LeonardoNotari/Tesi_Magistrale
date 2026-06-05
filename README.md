@@ -4,11 +4,12 @@
 
 Nella repository sono presenti i seguenti script Python:
 
-* `decoder.py`: modello utilizzato per decodificare le rappresentazioni ULIP2 in point cloud.
+* tre modelli utilizzati per decodificare le rappresentazioni ULIP2 in point cloud:
+  * `decoder_v1.py`: MLP semplice.
 
-* `decoder.py`: modello utilizzato per decodificare le rappresentazioni ULIP2 in point cloud.
+  * `decoder_v2.py`: MLP con una struttura leggermente più complessa.
 
-* `decoder.py`: modello utilizzato per decodificare le rappresentazioni ULIP2 in point cloud.
+  * `decoder_v3.py`: modello basato su transformers.
 
 * `train.py`: codice per il training del decoder. Utilizza la Chamfer Loss e una procedura di subsampling per ridurre l’utilizzo di memoria GPU.
 
@@ -31,7 +32,7 @@ Nella repository sono presenti i seguenti script Python:
   8. il risultato viene salvato nella stessa cartella della point cloud originale, con un nome che include:
       * valore di `ALPHA`;
       * polo positivo e negativo (se presente);
-      ] modalità di calcolo della direzione;
+      * modalità di calcolo della direzione;
       * numero di `ADAPT_STEPS`.
 
 Nelle cartelle:
