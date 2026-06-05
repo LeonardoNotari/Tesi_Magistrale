@@ -157,11 +157,11 @@ def convert_to_npy(path_pc):
 
 
 def find_direction(p_pos, p_neg, orig_emb, mode):
-    # 0: direzione calcolata con i due poli
-    # 1: calcolo i baricentri dei punti più spostati verso i poli
-    # 2: direzione tra polo positivo e embedding
-    # 3: direzione tra baricentro dei punti più vicini al polo positivo e embedding
-    # 4: direzione data da baricentro dei punti più vicini al polo positivo e quello dei punti più lontani dal polo positivo
+    #0: direzione calcolata tra i due poli testuali (o delle pointcloud/mesh di esempio)
+    #1: direzione calcolata tra i baricentri degli embedding più spostati verso i poli
+    #2: direzione calcolata tra polo positivo e embedding di partenza
+    #3: direzione calcolata tra baricentro dei punti più vicini al polo positivo e embedding
+    #4: direzione calcolata tra il baricentro dei punti più vicini al polo positivo e quello dei punti più lontani dal polo positivo
 
     print(p_pos)
     print(orig_emb)
